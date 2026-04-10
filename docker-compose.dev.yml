@@ -1,0 +1,35 @@
+services:
+  engine:
+    build:
+      context: ./engine
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./engine/app:/app/app
+      - engine-uploads:/app/uploads
+      - engine-outputs:/app/outputs
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+
+  web:
+    build:
+      context: ./web
+      target: deps
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./web:/app
+      - /app/node_modules
+    environment:
+      - ENGINE_URL=http://engine:8000
+      - DATABASE_URL=file:./local.db
+      - BETTER_AUTH_SECRET=zipress-dev-secret
+      - BETTER_AUTH_URL=http://localhost:3000
+      - NEXT_PUBLIC_APP_URL=http://localhost:3000
+    command: pnpm dev -- --hostname 0.0.0.0
+    depends_on:
+      - engine
+
+volumes:
+  engine-uploads:
+  engine-outputs:

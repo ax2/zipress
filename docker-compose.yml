@@ -1,0 +1,30 @@
+services:
+  engine:
+    build: ./engine
+    ports:
+      - "8000:8000"
+    volumes:
+      - engine-uploads:/app/uploads
+      - engine-outputs:/app/outputs
+    restart: unless-stopped
+
+  web:
+    build: ./web
+    ports:
+      - "3000:3000"
+    environment:
+      - ENGINE_URL=http://engine:8000
+      - DATABASE_URL=file:/app/data/zipress.db
+      - BETTER_AUTH_SECRET=${BETTER_AUTH_SECRET:-zipress-change-me}
+      - BETTER_AUTH_URL=http://localhost:3000
+      - NEXT_PUBLIC_APP_URL=http://localhost:3000
+    volumes:
+      - web-data:/app/data
+    depends_on:
+      - engine
+    restart: unless-stopped
+
+volumes:
+  engine-uploads:
+  engine-outputs:
+  web-data:

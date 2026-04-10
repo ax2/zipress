@@ -1,0 +1,25 @@
+[project]
+name = "zipress-engine"
+version = "0.1.0"
+description = "Image processing engine for zipress — ID photo layout tool"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi>=0.115",
+    "uvicorn[standard]>=0.34",
+    "pillow>=11.0",
+    "python-multipart>=0.0.18",
+]
+
+[project.optional-dependencies]
+test = [
+    "pytest>=8.0",
+    "pytest-asyncio>=0.24",
+    "httpx>=0.28",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["app"]
