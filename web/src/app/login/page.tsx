@@ -56,7 +56,7 @@ export default function LoginPage() {
             Enter your email and password to sign in
           </CardDescription>
         </CardHeader>
-        <form onSubmit={onSubmit}>
+        <form method="post" onSubmit={onSubmit}>
           <CardContent className="space-y-4">
             <div className="space-y-2">
               <Label htmlFor="email" className="text-zinc-300">

@@ -64,7 +64,7 @@ export default function RegisterPage() {
             Set up your workspace
           </CardDescription>
         </CardHeader>
-        <form onSubmit={onSubmit}>
+        <form method="post" onSubmit={onSubmit}>
           <CardContent className="space-y-4">
             <div className="space-y-2">
               <Label htmlFor="name" className="text-zinc-300">
