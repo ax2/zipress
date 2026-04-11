@@ -14,7 +14,7 @@ import {
   Sparkles,
 } from "lucide-react";
 
-import { engineApi } from "@/lib/engine-api";
+import { engineApi, getEngineAssetUrl } from "@/lib/engine-api";
 import { useLayoutStore } from "@/stores/layout-store";
 import { Button } from "@/components/ui/button";
 import {
@@ -188,7 +188,7 @@ export default function LayoutEditorPage() {
             <div className="relative overflow-hidden rounded-lg border border-zinc-800 bg-zinc-900">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src={uploadedPhoto.thumbnail_url}
+                src={getEngineAssetUrl(uploadedPhoto.thumbnail_url)}
                 alt="已上传照片"
                 className="h-48 w-full object-contain"
               />

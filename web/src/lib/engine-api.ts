@@ -51,6 +51,17 @@ export interface UploadResponse {
   height: number;
 }
 
+/** Engine returns paths like `/uploads/...` (relative to the API host). Route them through Next `/api/engine` so the browser hits our proxy, not port 3000 root. */
+export function getEngineAssetUrl(path: string): string {
+  if (path.startsWith("http://") || path.startsWith("https://")) {
+    return path;
+  }
+  if (path.startsWith("/")) {
+    return `/api/engine${path}`;
+  }
+  return `/api/engine/${path}`;
+}
+
 export const engineApi = {
   getSizes: () =>
     api
