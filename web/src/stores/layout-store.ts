@@ -17,12 +17,16 @@ interface LayoutState {
   photoSize: string;
   paperSize: string;
   layoutMode: "uniform" | "mixed";
+  largeSize: string;
+  smallSize: string;
   backgroundColor: string;
   cuttingGuides: boolean;
   spacingMm: number;
   setPhotoSize: (s: string) => void;
   setPaperSize: (s: string) => void;
   setLayoutMode: (m: "uniform" | "mixed") => void;
+  setLargeSize: (s: string) => void;
+  setSmallSize: (s: string) => void;
   setBackgroundColor: (c: string) => void;
   setCuttingGuides: (v: boolean) => void;
   setSpacingMm: (v: number) => void;
@@ -45,6 +49,8 @@ const initialState = {
   photoSize: "1寸",
   paperSize: "6寸",
   layoutMode: "uniform" as const,
+  largeSize: "2寸",
+  smallSize: "1寸",
   backgroundColor: "#FFFFFF",
   cuttingGuides: true,
   spacingMm: 1.0,
@@ -60,6 +66,8 @@ export const useLayoutStore = create<LayoutState>((set) => ({
   setPhotoSize: (s) => set({ photoSize: s, layoutResult: null }),
   setPaperSize: (s) => set({ paperSize: s, layoutResult: null }),
   setLayoutMode: (m) => set({ layoutMode: m, layoutResult: null }),
+  setLargeSize: (s) => set({ largeSize: s, layoutResult: null }),
+  setSmallSize: (s) => set({ smallSize: s, layoutResult: null }),
   setBackgroundColor: (c) => set({ backgroundColor: c, layoutResult: null }),
   setCuttingGuides: (v) => set({ cuttingGuides: v, layoutResult: null }),
   setSpacingMm: (v) => set({ spacingMm: v, layoutResult: null }),

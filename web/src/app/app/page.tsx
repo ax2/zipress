@@ -43,11 +43,15 @@ export default function LayoutEditorPage() {
     photoSize,
     paperSize,
     layoutMode,
+    largeSize,
+    smallSize,
     backgroundColor,
     cuttingGuides,
     setPhotoSize,
     setPaperSize,
     setLayoutMode,
+    setLargeSize,
+    setSmallSize,
     setBackgroundColor,
     setCuttingGuides,
     layoutResult,
@@ -103,6 +107,10 @@ export default function LayoutEditorPage() {
         photo_size: photoSize,
         paper_size: paperSize,
         layout_mode: layoutMode,
+        ...(layoutMode === "mixed" && {
+          large_size: largeSize,
+          small_size: smallSize,
+        }),
         options: {
           background_color: backgroundColor,
           cutting_guides: cuttingGuides,
@@ -120,6 +128,8 @@ export default function LayoutEditorPage() {
     photoSize,
     paperSize,
     layoutMode,
+    largeSize,
+    smallSize,
     backgroundColor,
     cuttingGuides,
     setIsGenerating,
@@ -328,6 +338,58 @@ export default function LayoutEditorPage() {
               ))}
             </div>
           </fieldset>
+
+          {/* Mixed mode size selectors */}
+          {layoutMode === "mixed" && photoSizes.length > 0 && (
+            <>
+              <fieldset className="space-y-1.5">
+                <Label className="text-xs text-zinc-400">大尺寸（上半区）</Label>
+                <Select
+                  value={largeSize}
+                  onValueChange={(val) => {
+                    if (val) setLargeSize(val as string);
+                  }}
+                >
+                  <SelectTrigger className="w-full border-zinc-700 bg-zinc-900 text-zinc-200">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent className="border-zinc-700 bg-zinc-900">
+                    {photoSizes.map((s) => (
+                      <SelectItem key={s.name} value={s.name}>
+                        <span className="font-mono text-zinc-300">{s.name}</span>
+                        <span className="ml-1 text-zinc-500">
+                          {s.width_mm}×{s.height_mm}mm
+                        </span>
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </fieldset>
+              <fieldset className="space-y-1.5">
+                <Label className="text-xs text-zinc-400">小尺寸（下半区）</Label>
+                <Select
+                  value={smallSize}
+                  onValueChange={(val) => {
+                    if (val) setSmallSize(val as string);
+                  }}
+                >
+                  <SelectTrigger className="w-full border-zinc-700 bg-zinc-900 text-zinc-200">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent className="border-zinc-700 bg-zinc-900">
+                    {photoSizes.map((s) => (
+                      <SelectItem key={s.name} value={s.name}>
+                        <span className="font-mono text-zinc-300">{s.name}</span>
+                        <span className="ml-1 text-zinc-500">
+                          {s.width_mm}×{s.height_mm}mm
+                        </span>
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </fieldset>
+            </>
+          )}
 
           <Separator className="bg-zinc-800" />
 
