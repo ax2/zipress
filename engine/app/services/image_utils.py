@@ -137,3 +137,4 @@ def make_thumbnail(img: Image.Image, max_size: int = 400) -> Image.Image:
     thumb = img.copy()
     thumb.thumbnail((max_size, max_size), getattr(Image, "Resampling", Image).LANCZOS)
     return thumb
+

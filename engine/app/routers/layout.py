@@ -225,3 +225,4 @@ def download_layout(layout_id: str) -> FileResponse:
         filename=f"layout_{layout_id}.jpg",
         content_disposition_type="attachment",
     )
+

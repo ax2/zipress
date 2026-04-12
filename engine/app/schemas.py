@@ -66,3 +66,4 @@ class UploadResponse(BaseModel):
 class SizesResponse(BaseModel):
     photo_sizes: list[PhotoSizeInfo]
     paper_sizes: list[PaperSizeInfo]
+

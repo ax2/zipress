@@ -120,3 +120,4 @@ def test_preview_and_download(client: TestClient) -> None:
     dl = client.get(f"/download/{layout_id}")
     assert dl.status_code == 200
     assert dl.headers.get("content-type", "").startswith("image/jpeg")
+

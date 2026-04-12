@@ -66,3 +66,4 @@ def draw_cutting_guides(canvas: Image.Image, layout: LayoutResult) -> None:
     for zone in layout.zones:
         for pos in zone.positions:
             _draw_corner_marks(draw, pos.x, pos.y, pos.width, pos.height)
+

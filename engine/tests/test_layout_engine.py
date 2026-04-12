@@ -74,3 +74,4 @@ def test_render_layout_with_cutting_guides() -> None:
     # 与无辅助线版本同尺寸（辅助线画在画布内/角标向外延伸不改变画布大小）
     plain = render_layout(photo, layout, cutting_guides=False)
     assert plain.size == out.size
+

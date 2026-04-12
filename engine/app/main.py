@@ -35,3 +35,4 @@ app.mount("/uploads", StaticFiles(directory=str(UPLOAD_DIR)), name="uploads")
 @app.get("/health")
 def health() -> dict[str, str]:
     return {"status": "ok"}
+

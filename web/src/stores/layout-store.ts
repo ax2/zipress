@@ -76,3 +76,4 @@ export const useLayoutStore = create<LayoutState>((set) => ({
   setIsGenerating: (v) => set({ isGenerating: v }),
   reset: () => set(initialState),
 }));
+

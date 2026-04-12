@@ -301,3 +301,4 @@ def render_mixed_layout(
         draw_cutting_guides(canvas, layout)
 
     return canvas
+
